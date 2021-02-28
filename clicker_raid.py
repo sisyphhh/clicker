@@ -6,14 +6,14 @@
 #интерфейс qt
 import pyautogui as pg
 import time
+import mouse
 
-timer1=int(input("Put a time which you need to put your cursor on the right position ",))
-#print(pg.size())#The screen resolution size is returned by the size()
-#print()
+print("Choose the position you need by cursor and click on it.\n")
+
 
 def choose_posintion():
 	x,y=pg.position()
-	print('x=',x,', y=',y)
+	print('x =',x,', y =',y)
 	return x,y
 
 def chetchick(timer111):
@@ -29,13 +29,20 @@ def stop_session(flag):
 	else:
 		return 1
 
-chetchick(timer1)
-x,y=choose_posintion()
+
+while True:
+	if mouse.is_pressed(button='left'):
+		print('Gotcha')
+		x,y=choose_posintion()
+		break
+
+#time.sleep(4)
 
 STARTER=True
 while STARTER:
 	Number=int(input("Put a Number of 1-clicks ",))#sec
 	timer3=int(input("Put a time-intervals between clicks ",))#sec
+	print()
 
 	#Номерной блок, зависящий от кол-ва кликов и временными интервалами между ними 
 	while Number:# пока текущее время < Времени окончания делаем клики
@@ -44,9 +51,8 @@ while STARTER:
 		pg.click(x, y)
 		chetchick(timer3)
 		Number-=1
-		print()
 
-	print('Time is over for this Session\n')
+	print('Time is over for this Session')
 	print('Do you want to continue y/n?\n')
 	ans = input()
 	STARTER=stop_session(ans)
