@@ -8,8 +8,6 @@ import pyautogui as pg
 import time
 import mouse
 
-print("Choose the position you need by cursor and click on it.\n")
-
 
 def choose_posintion():
 	x,y=pg.position()
@@ -23,28 +21,50 @@ def chetchick(timer111):
 		time.sleep(1)
 	print()
 
-def stop_session(flag):
-	if flag == 'n':
-		return 0
+def START_session():
+	print("Choose the position you need by cursor and right-click on it.\n")
+	while True:
+		if mouse.is_pressed(button='right'):#left
+			print('Gotcha')
+			x,y=choose_posintion()
+			return x,y
+			##break
+
+def STOP_session(flag):
+	if flag == '1':
+		return True,'Restart'
+	elif flag == '2':
+		return True,'Continue'
 	else:
-		return 1
+		return False,'Stop'
 
 
-while True:
-	if mouse.is_pressed(button='left'):
-		print('Gotcha')
-		x,y=choose_posintion()
-		break
+#'''
+						#########################
+						## The body of program ##
+						#########################
+#'''
 
+
+x,y=START_session()
 #time.sleep(4)
 
 STARTER=True
+##	Restart=new(coord + clicks number + time interval);	Continue=new(clicks number + time interval)
+START_Type='Continue'
 while STARTER:
-	Number=int(input("Put a Number of 1-clicks ",))#sec
-	timer3=int(input("Put a time-intervals between clicks ",))#sec
+	#print('here we are 1')
+	if START_Type == 'Continue':
+		Number=int(input("Put a Number of 1-clicks ",))#sec
+		timer3=int(input("Put a time-intervals between clicks ",))#sec	
+	elif START_Type == 'Restart':
+		x,y=START_session()
+		Number=int(input("Put a Number of 1-clicks ",))#sec
+		timer3=int(input("Put a time-intervals between clicks ",))#sec
 	print()
-
-	#Номерной блок, зависящий от кол-ва кликов и временными интервалами между ними 
+	#print('here we are 2')
+	#ans = input()
+	##Номерной блок, зависящий от кол-ва кликов и временными интервалами между ними 
 	while Number:# пока текущее время < Времени окончания делаем клики
 		print("%d click left"%(Number))
 		#time.sleep(timer3)
@@ -52,10 +72,11 @@ while STARTER:
 		chetchick(timer3)
 		Number-=1
 
-	print('Time is over for this Session')
-	print('Do you want to continue y/n?\n')
+	print('Time is over for this Session\n')
+	print('Do you want to Restart/Continue or end Session?\nEnter - 1/2/smth else\n')
 	ans = input()
-	STARTER=stop_session(ans)
+	STARTER, START_Type = STOP_session(ans)
+	print(STARTER)
 
 
 #временной блок, зависящий от времени окончания и временными интервалами между кликами
