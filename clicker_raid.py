@@ -45,15 +45,13 @@ def STOP_session(flag):
 						#########################
 #'''
 
-
 x,y=START_session()
-#time.sleep(4)
-
 STARTER=True
 ##	Restart=new(coord + clicks number + time interval);	Continue=new(clicks number + time interval)
 START_Type='Continue'
+
 while STARTER:
-	#print('here we are 1')
+
 	if START_Type == 'Continue':
 		Number=int(input("Put a Number of 1-clicks ",))#sec
 		timer3=int(input("Put a time-intervals between clicks ",))#sec	
@@ -62,8 +60,7 @@ while STARTER:
 		Number=int(input("Put a Number of 1-clicks ",))#sec
 		timer3=int(input("Put a time-intervals between clicks ",))#sec
 	print()
-	#print('here we are 2')
-	#ans = input()
+	
 	##Номерной блок, зависящий от кол-ва кликов и временными интервалами между ними 
 	while Number:# пока текущее время < Времени окончания делаем клики
 		print("%d click left"%(Number))
@@ -77,26 +74,3 @@ while STARTER:
 	ans = input()
 	STARTER, START_Type = STOP_session(ans)
 	print(STARTER)
-
-
-#временной блок, зависящий от времени окончания и временными интервалами между кликами
-'''
-#перевод времени работы программы из секунд в минуты
-finish=time.localtime()[3:6]#cortezh consist of ()
-print(finish)
-
-while :# пока текущее время < Времени окончания делаем клики
-	time.sleep(timer3)
-	pg.click(x, y)
-	now=time.localtime()[3:6]
-
-print('time is over')
-
-#
-#a=time.localtime()
-#a
-#
-#time.strftime('%A',a)
-#pg.click(x=100, y=200)
-#time.sleep(1)
-'''
