@@ -23,7 +23,7 @@ def chetchick(timer111):
 	print()
 
 def START_session():
-	print("Choose the position you need by cursor and right-click on it.\n")
+	print("Choose the position you need by cursor and right-click on it:\n")
 	while True:
 		if mouse.is_pressed(button='right'):#left
 			print('Gotcha')
@@ -55,12 +55,12 @@ START_Type='Continue'
 while STARTER:
 
 	if START_Type == 'Continue':
-		Number=int(input("Put a Number of 1-clicks ",))#sec
-		timer3=int(input("Put a time-intervals between clicks ",))#sec	
+		Number=int(input("Put a Number of 1-clicks: ",))#sec
+		timer3=int(input("Put a time-intervals between clicks: ",))#sec	
 	elif START_Type == 'Restart':
 		x,y=START_session()
-		Number=int(input("Put a Number of 1-clicks ",))#sec
-		timer3=int(input("Put a time-intervals between clicks ",))#sec
+		Number=int(input("Put a Number of 1-clicks: ",))#sec
+		timer3=int(input("Put a time-intervals between clicks: ",))#sec
 	print()
 	
 	##Номерной блок, зависящий от кол-ва кликов и временными интервалами между ними 
@@ -73,7 +73,7 @@ while STARTER:
 		Number-=1
 
 	print('Time is over for this Session\n')
-	print('Do you want to Restart/Continue or end Session?\nEnter - 1/2/smth else\n')
+	print('Restart/Continue or end the Session?\nEnter - 1/2/else\n')
 	ans = input()
 	STARTER, START_Type = STOP_session(ans)
 	print(STARTER)
