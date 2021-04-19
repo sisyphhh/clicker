@@ -1,16 +1,17 @@
 #clicker raid
 #клик по координатам
-#проверка цвета по координатам 
 #время клика
-#время останова
+#время остановки
 #интерфейс qt
-import pyautogui as pg
+
 import time
+#import pyautogui as pg
 import mouse
 
 
 def choose_posintion():
-	x,y=pg.position()
+	##x,y=pg.position()
+	x,y=mouse.get_position()
 	print('x =',x,', y =',y)
 	return x,y
 
@@ -47,7 +48,8 @@ def STOP_session(flag):
 
 x,y=START_session()
 STARTER=True
-##	Restart=new(coord + clicks number + time interval);	Continue=new(clicks number + time interval)
+##	Restart=new(coord + clicks number + time interval);	
+##	Continue=new(clicks number + time interval)
 START_Type='Continue'
 
 while STARTER:
@@ -64,8 +66,9 @@ while STARTER:
 	##Номерной блок, зависящий от кол-ва кликов и временными интервалами между ними 
 	while Number:# пока текущее время < Времени окончания делаем клики
 		print("%d click left"%(Number))
-		#time.sleep(timer3)
-		pg.click(x, y)
+		##pg.click(x, y)
+		mouse.move(x, y)
+		mouse.click(button='left')
 		chetchick(timer3)
 		Number-=1
 
